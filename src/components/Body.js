@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPromtedLabel} from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -10,6 +10,10 @@ const Body = () => {
   const [ListOfRestaurant, setListOfRestaurant] = useState([]);
 
   const [filteredRestaurant, setfilteredRestaurant] = useState([]);
+
+  const RestaurantCardPromoted = withPromtedLabel(RestaurantCard);
+
+console.log(ListOfRestaurant);
 
   //Bind search box using State
   const [searchText, setSearchText] = useState("");
@@ -103,7 +107,11 @@ const Body = () => {
             to={"/restaurant/" + restaurant.info.id}
             style={{ textDecoration: "none", color: "black" }}
           >
-            <RestaurantCard resData={restaurant} />
+             {restaurant.info.aggregatedDiscountInfoV3 ? (
+              <RestaurantCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant} />
+            )}
           </Link>
         ))}
       </div>
