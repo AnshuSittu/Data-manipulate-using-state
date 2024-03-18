@@ -13,7 +13,7 @@ const Body = () => {
 
   const RestaurantCardPromoted = withPromtedLabel(RestaurantCard);
 
-console.log(ListOfRestaurant);
+//console.log(ListOfRestaurant);
 
   //Bind search box using State
   const [searchText, setSearchText] = useState("");

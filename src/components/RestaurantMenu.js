@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_API } from "../../utils/constants";
 import useRestaurantMenu from "../../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantMenu = () => {
   const { resID } = useParams();
@@ -19,27 +20,42 @@ const RestaurantMenu = () => {
   const { itemCards } =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
-  console.log(itemCards);
+  //console.log(resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+
+  // filtering data from the catergory to get all the items
+
+  const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) =>
+        c.card?.card?.["@type"] ===
+        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+    );
+  //console.log(categories);
 
   return (
-    <div className="px-2 mx-2 mt-4">
-      <h1 className="text-xl font-extrabold tracking-widest">{name}</h1>
-      <h2 className="text-xl font-bold tracking-widest">
+    <div className="text-center">
+      <h1 className="font-bold my-5 text-2xl">{name}</h1>
+      <h2 className="font-bold text-lg">
         {cuisines.join(", ")} - {costForTwoMessage}
       </h2>
-      <h3 className="text-xl font-bold tracking-widest">Menu</h3>
-      <ul>
-        {/* Added Optional Chaning to avoid this error if item list is not there */}
+
+      {/* categories Accordian */}
+
+      {categories.map((catergory) => (
+        <RestaurantCategory key={catergory?.card?.card.title} data= {catergory?.card?.card}/>
+      ))}
+
+      {/* <ul>
         {itemCards?.map((item) => (
           <li
             className="text-lg font-mono p-10 m-5 bg-neutral-300 rounded-lg cursor-pointer hover:bg-amber-50"
             key={item.card.info.id}
           >
             {item.card.info.name} - ₹
-            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}        
+            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
