@@ -10,6 +10,7 @@ const RestaurantCategory = ({ data }) => {
   const handleClick = () => {
     setShowItem(!showItem);    /* here we have made toggale feture */
   };
+  
   return (
     <div>
       {/* Accordian Header */}
@@ -21,7 +22,7 @@ const RestaurantCategory = ({ data }) => {
           <span className="font-bold text-lg">
             {data.title} ({data.itemCards.length})
           </span>
-          <span>🔽</span>
+          <span>+</span>
         </div>
 
         {showItem && <ItemList items={data.itemCards} />}

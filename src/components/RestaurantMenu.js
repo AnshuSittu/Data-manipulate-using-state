@@ -42,20 +42,11 @@ const RestaurantMenu = () => {
       {/* categories Accordian */}
 
       {categories.map((catergory) => (
-        <RestaurantCategory key={catergory?.card?.card.title} data= {catergory?.card?.card}/>
+        <RestaurantCategory
+          key={catergory?.card?.card.title}
+          data={catergory?.card?.card}
+        />
       ))}
-
-      {/* <ul>
-        {itemCards?.map((item) => (
-          <li
-            className="text-lg font-mono p-10 m-5 bg-neutral-300 rounded-lg cursor-pointer hover:bg-amber-50"
-            key={item.card.info.id}
-          >
-            {item.card.info.name} - ₹
-            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };
