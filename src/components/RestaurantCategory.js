@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data }) => {
+const RestaurantCategory = ({ data, showItem, setShowIndex }) => {
   // console.log(data);
 
-  //For Hide and show Item we have use thik hooks
-  const [showItem, setShowItem] = useState(false);
+/*  added to make controlled component  */
+  //For Hide and show Item we have use this hooks and pass props ShowItem 
+
+ // const [showItem, setShowItem] = useState(false);
 
   const handleClick = () => {
-    setShowItem(!showItem);    /* here we have made toggale feture */
+   // setShowItem(!showItem);    /* here we have made toggale feture */
+  setShowIndex();
   };
   
   return (

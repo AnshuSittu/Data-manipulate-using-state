@@ -11,6 +11,10 @@ const RestaurantMenu = () => {
 
   const resInfo = useRestaurantMenu(resID);
 
+  // for show and hide accordian 
+  const [showIndex, setShowIndex] = useState(null)
+  
+
   if (resInfo === null) return <Shimmer />;
 
   // Destructuring
@@ -41,10 +45,13 @@ const RestaurantMenu = () => {
 
       {/* categories Accordian */}
 
-      {categories.map((catergory) => (
+      {categories.map((catergory, index) => (
+        // controlled component 
         <RestaurantCategory
           key={catergory?.card?.card.title}
           data={catergory?.card?.card}
+          showItem={index === showIndex ? true: false}
+          setShowIndex={() => setShowIndex(index)}
         />
       ))}
     </div>
