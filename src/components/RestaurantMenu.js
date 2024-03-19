@@ -9,6 +9,10 @@ import RestaurantCategory from "./RestaurantCategory";
 const RestaurantMenu = () => {
   const { resID } = useParams();
 
+  // Props Drilling
+   const dummy = "dummy data"
+
+
   const resInfo = useRestaurantMenu(resID);
 
   // for show and hide accordian 
@@ -52,6 +56,7 @@ const RestaurantMenu = () => {
           data={catergory?.card?.card}
           showItem={index === showIndex ? true: false}
           setShowIndex={() => setShowIndex(index)}
+          dummy={dummy}
         />
       ))}
     </div>

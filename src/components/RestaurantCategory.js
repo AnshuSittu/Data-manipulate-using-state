@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data, showItem, setShowIndex }) => {
+const RestaurantCategory = ({ data, showItem, setShowIndex, dummy }) => {
   // console.log(data);
 
-/*  added to make controlled component  */
-  //For Hide and show Item we have use this hooks and pass props ShowItem 
+  /*  added to make controlled component  */
+  //For Hide and show Item we have use this hooks and pass props ShowItem
 
- // const [showItem, setShowItem] = useState(false);
+  // const [showItem, setShowItem] = useState(false);
 
   const handleClick = () => {
-   // setShowItem(!showItem);    /* here we have made toggale feture */
-  setShowIndex();
+    // setShowItem(!showItem);    /* here we have made toggale feture */
+    setShowIndex();
   };
-  
+
   return (
     <div>
       {/* Accordian Header */}
@@ -28,9 +28,9 @@ const RestaurantCategory = ({ data, showItem, setShowIndex }) => {
           <span>+</span>
         </div>
 
-        {showItem && <ItemList items={data.itemCards} />}
+        {/* Accordian Body */}
+        {showItem && <ItemList items={data.itemCards} dummy={dummy}/>}
       </div>
-      {/* Accordian Body */}
     </div>
   );
 };
