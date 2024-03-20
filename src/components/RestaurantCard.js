@@ -1,11 +1,15 @@
+import { useContext } from "react";
 import { CDN_URL } from "../../utils/constants";
+import userContext from "../../utils/userContext";
 
 const RestaurantCard = (props) => {
   const { resData } = props;
 
   //console.log(resData)
-
-
+  
+  {/* here use of useContext to display useContext can be use anywhere  */}
+ const {logedInUser} = useContext(userContext);
+  
   const {
    cloudinaryImageId,
     name,
@@ -28,6 +32,7 @@ const RestaurantCard = (props) => {
       <h4 className="py-1">{avgRating} ⭐</h4>
       <h4 className="py-1"> {costForTwo} For Two</h4>
       <h4 className="py-1">{sla?.slaString}</h4>
+      <h4 className="py-1"> User: {logedInUser}</h4> {/* here use of useContext to display useContext can be use anywhere  */}
       </div>
     </div>
   );
