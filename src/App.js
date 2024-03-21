@@ -29,14 +29,9 @@ const AppLayout = () => {
   }, []);
 
   return (
-    //Outside will be Default Value
     <userContext.Provider value={{ loggedInUser: userName}}>
-    {/* here will be the value is Avir Sing */}
       <div className="app">
-      <userContext.Provider value={{ loggedInUser: "Tony Stark"}}>
-       {/* Inside header Value will be Tony Stark */}
         <Header />
-        </userContext.Provider>
         <Outlet />
       </div>
     </userContext.Provider>
