@@ -8,7 +8,7 @@ const RestaurantCard = (props) => {
   //console.log(resData)
   
   {/* here use of useContext to display useContext can be use anywhere  */}
- const {logedInUser} = useContext(userContext);
+ const {loggedInUser} = useContext(userContext);
   
   const {
    cloudinaryImageId,
@@ -32,7 +32,7 @@ const RestaurantCard = (props) => {
       <h4 className="py-1">{avgRating} ⭐</h4>
       <h4 className="py-1"> {costForTwo} For Two</h4>
       <h4 className="py-1">{sla?.slaString}</h4>
-      <h4 className="py-1"> User: {logedInUser}</h4> {/* here use of useContext to display useContext can be use anywhere  */}
+      <h4 className="py-1"> User: {loggedInUser}</h4> {/* here use of useContext to display useContext can be use anywhere  */}
       </div>
     </div>
   );

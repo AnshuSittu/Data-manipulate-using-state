@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -8,22 +8,38 @@ import Error from "./components/Error";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import userContext from "../utils/userContext";
 //import Grocery from "./components/Grocery";
 
+
 //lazy Loading
-const Grocery = lazy(()=> import ("./components/Grocery"));
-
-
+const Grocery = lazy(() => import("./components/Grocery"));
 
 const AppLayout = () => {
+  const [userName, setUserName] = useState();
 
+  // Authentication
+  useEffect(() => {
+    // Make an API call and send userName and Password & got the result and it says..
+  /* Now we want to keep this data at userInfo line: 18 */
+    const data = {
+      name: "Avir Singh",
+    };
+    setUserName(data.name); /* update userInfo */
+  }, []);
 
-  
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-    </div>
+    //Outside will be Default Value
+    <userContext.Provider value={{ loggedInUser: userName}}>
+    {/* here will be the value is Avir Sing */}
+      <div className="app">
+      <userContext.Provider value={{ loggedInUser: "Tony Stark"}}>
+       {/* Inside header Value will be Tony Stark */}
+        <Header />
+        </userContext.Provider>
+        <Outlet />
+      </div>
+    </userContext.Provider>
   );
 };
 
@@ -50,9 +66,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/grocery",
-        element:  <Suspense fallback={<h1>Loading....</h1>}>
-        <Grocery />
-      </Suspense>,
+        element: (
+          <Suspense fallback={<h1>Loading....</h1>}>
+            <Grocery />
+          </Suspense>
+        ),
       },
       {
         path: "/restaurant/:resID",

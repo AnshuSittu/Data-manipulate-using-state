@@ -12,8 +12,9 @@ const Header = () => {
 
   // using useContext 
   //This userContext comes from our User Context file 
-   const {logedInUser} = useContext(userContext);
-   console.log(logedInUser);
+   const {loggedInUser} = useContext(userContext);
+  
+   console.log(loggedInUser);
 
 
   return (
@@ -37,7 +38,7 @@ const Header = () => {
           </li>
           <li><Link to="/cart" className="px-1 mx-1">Cart</Link></li>
           <li className="nav">{onlineStatus ? "🟢" : "🔴"}</li>
-          <li className="px-1 mx-1 font-bold">{logedInUser}</li>
+          <li className="px-1 mx-1 font-bold">{loggedInUser}</li>
           <button
             className="px-2 ml-2 cursor-pointer border-solid border-2 rounded-xl bg-white-500 shadow-lg shadow-#F0F3FF-500/50 "
             onClick={() => {
